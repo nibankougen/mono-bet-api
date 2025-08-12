@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateBets < ActiveRecord::Migration[8.0]
   def change
     create_table :bets, id: :bigint do |t|
