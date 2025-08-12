@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameChannel < ApplicationCable::Channel
   def subscribed
     stream_from "game_room_#{params[:room_id]}"
@@ -7,6 +9,4 @@ class GameChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
     # ActionCable.server.broadcast("game_channel", { message: "A user has left the game." })
   end
-
-
 end
