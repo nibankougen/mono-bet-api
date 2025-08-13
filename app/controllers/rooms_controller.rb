@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [:update, :destroy]
 
   def create
-    @room = Room.new(room_params)
+    @room = Room.create!(room_params)
     @room.save!
     render json: @room, status: :created, serializer: RoomSerializer
   end

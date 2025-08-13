@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable"
 
   resources :rooms, only: [:create, :show, :update, :destroy] do
-    resources :users, only: [:create, :update, :destroy]
+    scope module: :rooms do
+      resources :users, only: [:create, :update, :destroy]
+    end
   end
 end

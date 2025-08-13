@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
+  protect_from_forgery
+
   rescue_from ActiveRecord::RecordNotFound do |exception|
     Rails.logger.error "Record not found: #{exception.message}"
     render json: { error: "not found" }, status: :not_found
@@ -14,7 +16,7 @@ class ApplicationController < ActionController::Base
     render json: { error: "parameter error" }, status: :bad_request
   end
 
-  rescue_from ActiveRecord::ValidationError do |exception|
+  rescue_from ActiveModel::ValidationError do |exception|
     Rails.logger.error "Validation error: #{exception.message}"
     render json: { error: "parameter error" }, status: :bad_request
   end

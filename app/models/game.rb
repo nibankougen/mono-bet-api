@@ -8,4 +8,8 @@ class Game < ApplicationRecord
   validates :set, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :turn, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :room, presence: true
+
+  def current_turn_bets
+    bets.where(set: set, turn: turn)
+  end
 end
