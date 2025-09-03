@@ -44,7 +44,7 @@ gem "thruster", require: false
 
 gem "rack-cors"
 
-gem "pg", "~> 1.5"
+gem "pg", "~> 1.6"
 
 gem "active_model_serializers", "~> 0.10.0"
 
