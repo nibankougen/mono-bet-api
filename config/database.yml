@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: postgresql
-  encoding: utf8
+  encoding: unicode
   collation: C
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("DATABASE_HOST", "db") %>

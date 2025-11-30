@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+
+create_table "bets", id: :bigint, force: :cascade do |t|
+  t.bigint   "game_id", null: false
+  t.bigint   "user_id", null: false
+  t.integer  "set", null: false
+  t.integer  "turn", null: false
+  t.timestamps
+end
+
+add_index "bets", ["game_id", "set", "turn"], name: "game_id_set_turn_index"
+add_index "bets", ["user_id", "set", "turn"], name: "user_id_set_turn_index"
+
+
+create_table "games", id: :bigint, force: :cascade do |t|
+  t.bigint   "room_id", null: false
+  t.integer  "status", null: false
+  t.integer  "current_set"
+  t.integer  "current_turn"
+  t.timestamps
+end
+
+add_index "games", ["room_id"]
+
+create_table "rooms", id: :bigint, force: :cascade do |t|
+  t.bigint   "uid", null: false
+  t.integer  "max_users", null: false
+  t.string   "status", null: false
+  t.timestamps
+end
+
+add_index "rooms", ["uid"], unique: true
+
+create_table "users", id: :bigint, force: :cascade do |t|
+  t.bigint   "uid", null: false
+  t.string   "name", null: false
+  t.integer  "icon_image", null: false
+  t.integer  "icon_color", null: false
+  t.timestamps
+end
+
+add_index "users", ["uid"], unique: true
